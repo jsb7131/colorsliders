@@ -1,4 +1,3 @@
-
 var JBSlider = function(opts){
 
 	this.opts				= opts;

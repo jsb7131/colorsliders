@@ -49,6 +49,7 @@ function startSlideRed(event){
 	this.mouse_is_down = true;
 
 	setValues(event, this);
+	
 }
 
 function moveSlideRed(event){

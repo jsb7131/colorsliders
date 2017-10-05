@@ -41,6 +41,16 @@
 
 }
 
+#text-container {
+
+	position: absolute;
+	top: 68%;
+	left: 32%;
+	height: 40px;
+	width: 500px;
+
+}
+
 .line {
 
 	position: absolute;

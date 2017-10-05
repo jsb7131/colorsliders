@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JB Sliders</title>
+
+ <link rel="stylesheet" type="text/css" href="style.css" />
+
+ <script type='text/javascript' src='jquery.js'></script>
+ <script type='text/javascript' src='JBSlider.js'></script>
+
+<div id='wrapper'>
+
+	<div id='slider-red-container'></div>
+	<div id='slider-green-container'></div>
+	<div id='slider-blue-container'></div>
+
+	<div id='info-red'>Logarithmic Red Channel</div>
+	<div id='info-green'>Logarithmic Green Channel</div>
+	<div id='info-blue'>Logarithmic Blue Channel</div>
+
+</div>
+
+<script type="text/javascript">
+
+function init(){
+
+
+	var slider_options = function(class_color) {
+
+		var slider_opts = {
+			id 					: 'slider-'+class_color+'-container',
+			color 				: ''+class_color+'',
+			background_content 	: '<div class="line"></div>',
+			handle_content		: '<div class="slider"></div>'
+		};
+
+		return slider_opts;
+	}
+
+	var color = {
+
+			red   : 'red',
+			green : 'green',
+			blue  : 'blue'
+
+		};
+
+	var slider_red = new JBSlider(slider_options(color.red));
+
+	var slider_green = new JBSlider(slider_options(color.green));
+
+	var slider_blue = new JBSlider(slider_options(color.blue));
+
+}
+
+</script>
+
+</head>
+
+<body onload='init()'>
+</body>
+</html>

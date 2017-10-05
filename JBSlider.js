@@ -7,21 +7,21 @@ var JBSlider = function(opts){
 
 	this.color 				= opts.color;
 
-	this.container 			= $('#'+this.id);
+	this.container 				= $('#'+this.id);
 
-	this.j_window 			= $(window);
+	this.j_window 				= $(window);
 
 	setup_slider.apply(this,[this.color]);
 
 	bind_events.apply(this);
 
-	this.jb_slider_handle 	= $('.jbslider-handle-'+this.color+'');
+	this.jb_slider_handle 			= $('.jbslider-handle-'+this.color+'');
 
 }
 
 function setup_slider(color){
 
-	this.handle_id = this.id + "-jbslider-handle-"+color+"";
+	this.handle_id   = this.id + "-jbslider-handle-"+color+"";
 
 	var slider_html  = "";
 	    slider_html += this.opts.background_content;

@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>JB Sliders</title>
+	
+ <meta name="viewport" content="width=device-width, initial-scale=0.6, user-scalable=0" />
 
  <link rel="stylesheet" type="text/css" href="style.css" />
 
@@ -11,11 +13,12 @@
 <div id='wrapper'>
 
 	<div id='slider-red-container'></div>
-	<div id='slider-green-container'></div>
-	<div id='slider-blue-container'></div>
-
 	<div id='info-red'>Logarithmic Red Channel</div>
+
+	<div id='slider-green-container'></div>
 	<div id='info-green'>Logarithmic Green Channel</div>
+
+	<div id='slider-blue-container'></div>
 	<div id='info-blue'>Logarithmic Blue Channel</div>
 	
 	<div id="text-container">These RGB slider objects were made in JavaScript and JQuery. Here is a link to the <a href="https://github.com/jsb7131/colorsliders" rel="external" onclick="window.open(this.href); return false;">GitHub repository</a> as well as a <a href="https://gist.github.com/jsb7131/6db592c7a43f3e941be4932a2f19d287" rel="external" onclick="window.open(this.href); return false;">GitHubGist of the JBSlider object</a>.</div>	
@@ -33,19 +36,26 @@ function init(){
 			id 			: 'slider-'+class_color+'-container',
 			color 			: ''+class_color+'',
 			background_content 	: '<div class="line"></div>',
-			handle_content		: '<div class="slider"></div>'
+			handle_content		: '<div class="slider"></div>',
+			callback		: slider_changed
 		};
 
 		return slider_opts;
 	}
+	
+	var slider_changed = function(value) {
+		
+		console.log(value);
+		
+	}
 
 	var color = {
 
-			red   : 'red',
-			green : 'green',
-			blue  : 'blue'
+		red   : 'red',
+		green : 'green',
+		blue  : 'blue'
 
-		};
+	};
 
 	var slider_red   = new JBSlider(slider_options(color.red));
 

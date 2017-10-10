@@ -34,9 +34,9 @@ function setup_slider(color){
 
 function bind_events(){
 
-	this.container.mousedown(startSlideRed.bind(this));
-	this.j_window.mousemove(moveSlideRed.bind(this));
-	this.j_window.mouseup(stopSlideRed.bind(this));
+	this.container.on("mousedown touchstart", startSlideRed.bind(this));
+	this.j_window.on("mousemove touchmove", moveSlideRed.bind(this));
+	this.j_window.on("mouseup touchend", stopSlideRed.bind(this));
 
 }
 
@@ -77,7 +77,16 @@ function stopSlideRed(event){
 
 function setValues(event, slider) {
 
-	var set_perc  = ((((event.clientX - slider.container.offset().left) / slider.container.width())).toFixed(2));
+	var set_perc;
+
+	if (event.originalEvent.touches) {
+
+		set_perc  = ((((event.originalEvent.touches[0].clientX - slider.container.offset().left) / slider.container.width())).toFixed(2));
+
+	} else {
+
+		set_perc  = ((((event.clientX - slider.container.offset().left) / slider.container.width())).toFixed(2));
+	};
 
 	var intensity = (55.2 * Math.log((set_perc * 100)+1));
 

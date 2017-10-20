@@ -1,4 +1,4 @@
-var JBSlider = function(opts){
+var JBSlider = function(opts) {
 
 	this.opts				= opts;
 
@@ -18,7 +18,7 @@ var JBSlider = function(opts){
 
 }
 
-function setup_slider(color){
+function setup_slider(color) {
 
 	this.handle_id   = this.id + "-jbslider-handle-"+color+"";
 
@@ -32,7 +32,7 @@ function setup_slider(color){
 
 }
 
-function bind_events(){
+function bind_events() {
 
 	this.container.on("mousedown touchstart", startSlideRed.bind(this));
 	this.j_window.on("mousemove touchmove", moveSlideRed.bind(this));
@@ -40,7 +40,7 @@ function bind_events(){
 
 }
 
-function startSlideRed(event){
+function startSlideRed(event) {
 
 	event.preventDefault();
 	event.stopPropagation();
@@ -51,7 +51,7 @@ function startSlideRed(event){
 	
 }
 
-function moveSlideRed(event){
+function moveSlideRed(event) {
 
 	event.preventDefault();
 	event.stopPropagation();
@@ -64,7 +64,7 @@ function moveSlideRed(event){
 
 }
 
-function stopSlideRed(event){
+function stopSlideRed(event) {
 
 	if (this.mouse_is_down) {
 
@@ -123,6 +123,8 @@ function setValues(event, slider) {
 		slider.jb_slider_handle.css('background-color', 'rgba(0,0,0,1)');
 
 		label_selector.html('Logarithmic '+label_name+' Channel: ' + 0);
+		
+		setBackground(slider, 0);
 
 	} else if (set_perc > 1) {
 
@@ -131,6 +133,8 @@ function setValues(event, slider) {
 		slider.jb_slider_handle.css('background-color', max_color_value);
 
 		label_selector.html('Logarithmic '+label_name+' Channel: ' + 255);
+		
+		setBackground(slider, 255);
 
 	} else {
 
@@ -139,8 +143,36 @@ function setValues(event, slider) {
 		slider.jb_slider_handle.css('background-color', dyn_color_value);
 
 		label_selector.html('Logarithmic '+label_name+' Channel: ' + intensity.toFixed());
+		
+		setBackground(slider, intensity.toFixed());
 
 	};
+}
+
+function setBackground(slider, val) {
+
+	var background    = $('#wrapper');
+
+	var current_value = background.css('background-color');
+	var comma_split   = current_value.split(', ');
+	var blue_split    = comma_split[2].split(')');
+
+	var current_red   = comma_split[0].slice(4);
+	var current_green = comma_split[1];
+	var current_blue  = blue_split[0];
+
+	if (slider.color === "red") {
+		background.css('background-color','rgba(' + val + ',' + current_green + ',' + current_blue + ',1)');
+	};
+
+	if (slider.color === "green") {
+		background.css('background-color','rgba(' + current_red + ',' + val + ',' + current_blue + ',1)');
+	};
+
+	if (slider.color === "blue") {
+		background.css('background-color','rgba(' + current_red + ',' + current_green + ',' + val + ',1)');
+	};
+	
 }
 
 window.JBSlider = JBSlider;
